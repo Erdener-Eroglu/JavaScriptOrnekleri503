@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="tr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Meyve Örneği Liste</title>
+</head>
+<body>
+    <div style="margin-top:50px; width:100%; text-align:center;">
+        <h2>Meyve Listesi</h2>
+        <hr color="#dbdbdb" width="100%" size="6" /> <br /> <br />
+        <input type="text" placeholder="Meyve adı giriniz..." id="txtMeyveAdi" /> <br /><br />
+        <input type="button" value="EKLE" class="ekleBtn" onclick="meyveEkle()" />
+        <input type="button" value="TEMİZLE" class="temizleBtn" onclick="temizle()" />
+        <br /><br />
+        <input type="text" placeholder="Meyve Ara..." id="txtMeyveAra" />
+        <br /><br />
+        <div id="meyveDiv"></div>
+    </div>
+
+    <script>
+        var meyveler = []; //boş bir dizi tanımladık.
+        function temizle() {
+            meyveler = [];
+        } //temizle fonk. bitti
+
+        function meyveEkle() {
+            //meyve adını alalım
+            var meyveAdi = document.getElementById("txtMeyveAdi").value.trim();
+            if (meyveAdi == null || meyveAdi.length == 0) {
+                alert("Meyve Adı Boş Geçilemezz!!!!!");
+                return;
+            }
+            var yeniMeyve = {
+                ad: meyveAdi,
+                adet: 1
+            };
+            var meyvedenVarMi = false;
+            for (var i = 0; i < meyveler.length; i++) {
+                if (meyveler[i].ad.toLowerCase() == meyveAdi.toLowerCase()) {
+                    meyvedenVarMi = true;
+                    meyveler[i].adet += 1;
+                    break;
+                }
+            }
+            if (!meyvedenVarMi) {
+                meyveler.push(yeniMeyve);
+            }
+            document.getElementById("txtMeyveAdi").value = "";
+            //Tüm meyveleri getirecek fonk. çağırmalıyız.
+            MeyveleriGetir();
+        } // meyveEkle bttii
+
+        function MeyveleriGetir() {
+            //Meyveleri tek tek div içine yerleştireceğiz.
+            //Bu işlem için OL sıralı liste kullanalım.
+            document.getElementById("meyveDiv").innerHTML = "";
+            var toplam = 0;
+            var ol = document.createElement("ol");
+            ol.setAttribute("id", "meyveList");
+            for (var i = 0; i < meyveler.length; i++) {
+                toplam += meyveler[i].adet;
+                var li = document.createElement("li");
+                li.innerHTML = "<b>" + meyveler[i].ad + " - <i>" + meyveler[i].adet + "</i></b>";
+                li.style.listStyleType = "none";
+                ol.appendChild(li);
+            } //for bitti
+            document.getElementById("meyveDiv").appendChild(ol);
+            var span = document.createElement("span");
+            span.innerHTML = "<b>Toplam = " + toplam + "</b>";
+            document.getElementById("meyveDiv").appendChild(span);
+
+
+        }//MeyveleriGetir bitti.
+    </script>
+</body>
+</html>
