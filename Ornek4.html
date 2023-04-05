@@ -63,6 +63,34 @@
                 var li = document.createElement("li");
                 li.innerHTML = "<b>" + meyveler[i].ad + " - <i>" + meyveler[i].adet + "</i></b>";
                 li.style.listStyleType = "none";
+
+                //artı butonu
+                var artiBtn = document.createElement("input");
+                artiBtn.setAttribute("type", "button");
+                artiBtn.setAttribute("value", "+");
+                artiBtn.setAttribute("id", meyveler[i].ad);
+                artiBtn.addEventListener("click", AdetArttir);
+
+                //eksi butonu
+                var eksiBtn = document.createElement("input");
+                eksiBtn.setAttribute("type", "button");
+                eksiBtn.setAttribute("value", "-");
+                eksiBtn.setAttribute("id", meyveler[i].ad);
+                eksiBtn.addEventListener("click", AdetAzalt);
+
+
+                //sil butonu
+                var silBtn = document.createElement("input");
+                silBtn.setAttribute("type", "button");
+                silBtn.setAttribute("value", "SİL");
+                silBtn.setAttribute("id", meyveler[i].ad);
+                silBtn.addEventListener("click", MeyveSil);
+
+
+
+                li.appendChild(artiBtn);
+                li.appendChild(eksiBtn);
+                li.appendChild(silBtn);
                 ol.appendChild(li);
             } //for bitti
             document.getElementById("meyveDiv").appendChild(ol);
@@ -72,6 +100,39 @@
 
 
         }//MeyveleriGetir bitti.
+        function AdetArttir() {
+            for (var i = 0; i < meyveler.length; i++) {
+                if (meyveler[i].ad.toLowerCase() ==
+                    this.id.toLowerCase()) {
+                    meyveler[i].adet++;
+                    break;
+                }
+            } // for bitti 
+            MeyveleriGetir();
+        } //AdetArttir fonk. bitti
+
+        function MeyveSil() {
+            for (var i = 0; i < meyveler.length; i++) {
+                if (meyveler[i].ad.toLowerCase() == this.id.toLowerCase()) {
+                    meyveler.splice(i, 1);
+                    break;
+                }
+            }
+            MeyveleriGetir();
+        }
+
+        function AdetAzalt() {
+            for (var i = 0; i < meyveler.length; i++) {
+                if (meyveler[i].ad.toLowerCase() == this.id.toLowerCase()) {
+                    meyveler[i].adet--;
+                    if (meyveler[i].adet == 0) {
+                        meyveler.splice(i, 1);
+                    }
+                    break;
+                }
+            }
+            MeyveleriGetir();
+        }
     </script>
 </body>
 </html>
