@@ -62,6 +62,18 @@
         //}); // document ready bitti
         var kullanicilar = [];
         $(document).ready(function () {
+            var buGun = new Date();
+            var ay = buGun.getMonth() + 1;
+            var gun = buGun.getDate();
+            if (gun < 10) {
+                gun = '0' + gun;
+            }
+            if (ay < 10) {
+                ay = '0' + ay;
+            }
+            var maxTrh = buGun.getFullYear() + "-" + ay + "-" + gun;
+            $("#dogumtrh").attr("max", maxTrh);
+
             $("#btnEkle").click(function () {
                 var $ad = $("#txtAd");
                 var $soyad = $("#txtSoyad");
@@ -112,7 +124,7 @@
 
             });
 
-           
+
 
             //$("#txtAra").on("keyup", function () {
             //    var aranan = $(this).val().toLowerCase();
