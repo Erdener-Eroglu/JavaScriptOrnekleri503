@@ -24,6 +24,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ornek04", "Ornek04", "{5498
 		Ornek4.html = Ornek4.html
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ornek05", "Ornek05", "{B80B7300-0BE5-4786-9E66-76D300DA237B}"
+	ProjectSection(SolutionItems) = preProject
+		Ornek5.html = Ornek5.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

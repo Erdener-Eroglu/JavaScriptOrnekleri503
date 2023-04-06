@@ -22,6 +22,10 @@
         var meyveler = []; //boş bir dizi tanımladık.
         function temizle() {
             meyveler = [];
+            var sonuc = document.querySelectorAll("input[type = text]");
+            for (var i = 0; i < sonuc.length; i++) {
+                sonuc[i].value = "";
+            }
         } //temizle fonk. bitti
 
         function meyveEkle() {
