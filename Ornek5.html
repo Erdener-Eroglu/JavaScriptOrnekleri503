@@ -104,7 +104,11 @@
                 for (i in kullanicilar) {
                     if (kullanicilar[i].email.toLowerCase() == yeniKullanici.email.toLowerCase()) {
                         kullanicidanVarMi = true;
-                        alert("Aynı email ile kayıt bulunmaktadır.");
+                        Swal.fire(
+                            'DİKKAT!',
+                            'Aynı email kaydı bulunmaktadır.',
+                            'error'
+                        )
                         return;
                     }
                 }
@@ -119,7 +123,11 @@
 
                 if (!kullanicidanVarMi) {
                     kullanicilar.push(yeniKullanici);
-                    alert("Yeni kullanıcı eklendi.")
+                    Swal.fire(
+                        'DİKKAT!',
+                        'Yeni Kullanıcı Eklend',
+                        'success'
+                    )
                     //temizlik
                     $ad.val('');
                     $soyad.val('');
@@ -128,8 +136,12 @@
                 KullanicilariGetir();
             }); // btn ekle bitti
 
-            $('btnTemilze').click(function () {
-
+            $('#btnTemizle').click(function () {
+                //txtler temizlensin
+                $("#txtAd").val('');
+                $("#txtSoyad").val('');
+                $("#txtEmail").val('');
+                $('#dogumtrh').val('');
             });
 
 
